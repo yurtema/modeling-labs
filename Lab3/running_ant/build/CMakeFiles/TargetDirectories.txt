@@ -1,0 +1,3 @@
+/home/michael/practisecpp/projects/running_ant/build/CMakeFiles/running_ant.dir
+/home/michael/practisecpp/projects/running_ant/build/CMakeFiles/edit_cache.dir
+/home/michael/practisecpp/projects/running_ant/build/CMakeFiles/rebuild_cache.dir
