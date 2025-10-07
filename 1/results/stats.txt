@@ -1,5 +1,0 @@
-
-Neighborhood +, η=0.333 
-  Firing: mean=617.84, std=265.69, min=1, max=1404 
-  Trees : mean=30215.35, std=3678.92, min=20809, max=41798 
-  Empty : mean=31666.81, std=3632.05, min=20309, max=41688 
