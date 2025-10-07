@@ -7,7 +7,7 @@ from matplotlib.colors import ListedColormap
 from enum import Enum
 from typing import List, Tuple, Optional
 
-# --- параметры случайностей ---
+
 rs = np.random.RandomState(seed=1097)
 
 # --- параметры симуляции ---
@@ -19,11 +19,10 @@ gif = 0.666
 etas = [0.333, gif, 1]
 
 
-# --- перечисления ---
+
 class NeighborhoodType(Enum):
     CROSS = "+"
     DIAGONAL = "x"  # диагонали
-
 
 class CellState(Enum):
     EMPTY = 0
@@ -36,7 +35,7 @@ colors = ["#49423D", "orange", "green"]  # пусто, огонь, дерево
 cmap_forest = ListedColormap(colors)
 
 
-# --- генерация сетки ---
+# --- генерация начальной сетки ---
 def create_ca(w: int, h: int) -> np.ndarray:
     return np.full((h, w), CellState.EMPTY.value, dtype=np.int8)
 
@@ -54,8 +53,9 @@ def init_state(ca: np.ndarray, eta: float, f: int, rs: np.random.RandomState):
         ca[i_trees[chosen], j_trees[chosen]] = CellState.FIRING.value
 
 
-# --- соседи ---
+
 def get_cross_neighborhood(cell: Tuple[int, int], ca_shape: Tuple[int, int]) -> List[Tuple[int, int]]:
+    """Соседи в крестовой окрестности (4 клетки)"""
     i, j = cell
     h, w = ca_shape
     out = []
@@ -71,7 +71,7 @@ def get_cross_neighborhood(cell: Tuple[int, int], ca_shape: Tuple[int, int]) -> 
 
 
 def get_neuman_neighborhood(cell: Tuple[int, int], shape: Tuple[int, int]) -> List[Tuple[int, int]]:
-    """Соседи в фон-Неймановской окрестности (8 направлений)."""
+    """Соседи в фон-Неймановской окрестности (8 клеток)"""
     i, j = cell
     h, w = shape
     neighbors = [
@@ -83,7 +83,7 @@ def get_neuman_neighborhood(cell: Tuple[int, int], shape: Tuple[int, int]) -> Li
     return [(ni, nj) for ni, nj in neighbors if 0 <= ni < h and 0 <= nj < w]
 
 
-# --- обновление клетки ---
+# --- обновление 1 клетки ---
 def update_cell(ca: np.ndarray, new_ca: np.ndarray,
                 cell: Tuple[int, int], neighbors: List[Tuple[int, int]],
                 p_fire: float, p_grow: float, rs: np.random.RandomState):
@@ -113,7 +113,6 @@ def update(ca: np.ndarray, nt: NeighborhoodType,
     return new_ca
 
 
-# --- добавка в Statistics ---
 class Statistics:
     def __init__(self):
         self.t, self.a_f, self.a_t, self.a_e = [], [], [], []
@@ -125,6 +124,7 @@ class Statistics:
         self.a_e.append(int(np.sum(ca == CellState.EMPTY.value)))
 
     def summary(self) -> dict:
+        """Сводка за все выполнение"""
         arrs = {
             "Firing": np.array(self.a_f, dtype=float),
             "Trees": np.array(self.a_t, dtype=float),
@@ -163,7 +163,7 @@ def plot_three_panels(results, nt: NeighborhoodType, out_png: str):
     plt.close(fig)
 
 
-# --- симуляция ---
+# --- основная функция, запускает симуляцию с заданными параметрами ---
 def simulate(ca: np.ndarray, nt: NeighborhoodType, time: int,
              p_fire: float, p_grow: float,
              rs: np.random.RandomState,
@@ -190,6 +190,7 @@ def rc_pretty():
         "figure.dpi": 140,
         "savefig.dpi": 140
     })
+
 
 
 def plot_time_series_single(st: Statistics, nt: NeighborhoodType, out_png: str):
@@ -244,7 +245,6 @@ def animate_frames(frames: List[np.ndarray], out_gif: str, eta: float):
     plt.close(fig)
 
 
-# --- запуск ---
 if __name__ == "__main__":
     f = open('results/stats.txt', 'w')
     for nt in [NeighborhoodType.CROSS, NeighborhoodType.DIAGONAL]:
