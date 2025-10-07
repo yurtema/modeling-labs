@@ -168,7 +168,7 @@ def simulate(ca: np.ndarray, nt: NeighborhoodType, time: int,
              p_fire: float, p_grow: float,
              rs: np.random.RandomState,
              collect_frames: bool = False, frame_stride: int = 5):
-    st = Statistics();
+    st = Statistics()
     st.append(0, ca)
     frames = [ca.copy()] if collect_frames else []
     for t in range(1, time + 1):
@@ -211,8 +211,8 @@ def save_snapshot(ca: np.ndarray, t: int, out_png: str):
     fig, ax = plt.subplots(figsize=(5.3, 5.0))
     ax.matshow(ca, cmap=cmap_forest)
     ax.set_title(f"Время: {t}")
-    ax.set_xlabel("Length");
-    ax.set_ylabel("Width");
+    ax.set_xlabel("Length")
+    ax.set_ylabel("Width")
     ax.set_aspect("equal")
     fig.savefig(out_png, bbox_inches="tight")
     plt.close(fig)
