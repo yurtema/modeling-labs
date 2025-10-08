@@ -1,0 +1,29 @@
+Neighborhood +, η=0.333
+  Firing: mean=381.39, std=148.58, min=0, max=785 
+  Trees : mean=20055.39, std=2190.22, min=13317, max=26737 
+  Empty : mean=19563.22, std=2169.40, min=12997, max=26680 
+
+Neighborhood +, η=0.666 
+  Firing: mean=419.84, std=161.08, min=3, max=924 
+  Trees : mean=19473.81, std=3174.38, min=15541, max=29694 
+  Empty : mean=20106.35, std=3126.40, min=10105, max=23977 
+
+Neighborhood +, η=1 
+  Firing: mean=430.90, std=202.19, min=3, max=1112 
+  Trees : mean=20131.76, std=4435.87, min=14105, max=39997 
+  Empty : mean=19437.35, std=4432.31, min=0, max=25389 
+
+Neighborhood x, η=0.333 
+  Firing: mean=529.78, std=137.16, min=3, max=868 
+  Trees : mean=13173.93, std=2287.19, min=11051, max=21539 
+  Empty : mean=26296.29, std=2241.07, min=18106, max=28365 
+
+Neighborhood x, η=0.666 
+  Firing: mean=525.81, std=176.64, min=3, max=1090 
+  Trees : mean=14445.36, std=3514.01, min=11351, max=27790 
+  Empty : mean=25028.83, std=3482.51, min=12002, max=28094 
+
+Neighborhood x, η=1 
+  Firing: mean=538.44, std=202.04, min=3, max=1343 
+  Trees : mean=15370.53, std=5368.44, min=10904, max=39997 
+  Empty : mean=24091.03, std=5368.40, min=0, max=28546 
