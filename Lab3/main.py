@@ -6,8 +6,8 @@ COLS, ROWS = 140, 90
 W, H = COLS*GRID_SIZE, ROWS*GRID_SIZE
 STEPS_PER_FRAME = 20
 
-WRAP = True              # обёртка по краям (тор). Нажми W, чтобы переключить.
-steps = 0                # счётчик шагов
+WRAP = True             # обёртка по краям (тор). Нажми W, чтобы переключить.
+steps = 0               # счётчик шагов
 
 screen = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Langton's Ant (pygame)")
