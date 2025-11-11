@@ -18,7 +18,7 @@ Z_GROUND = 0
 rho = 2600.0
 k_p = 0.6
 
-# начальные параметры (могут быть заменены пресетом)
+
 mu_v, sigma_v = 90.0, 12.0
 mu_th, sigma_th = np.deg2rad(2.0), np.deg2rad(2.0)
 R_min, R_max = 0.5, 1.2
@@ -32,12 +32,7 @@ def mass_from_radius(R: float, rho_local: float = rho) -> float:
     return rho_local * (4.0 / 3.0) * np.pi * R ** 3
 
 
-# ----------------- КЛАСС БОМБЫ -----------------
 class Bomb:
-    """
-    Простая структура: положение r, скорость v, масса m, радиус R,
-    момент рождения t0 и флаги состояния.
-    """
     __slots__ = ("t_erup", "t0", "r", "v", "m", "R", "_t_ground", "_collided", "_landed")
 
     def __init__(self, t_erup: float, r0: np.ndarray, v0: np.ndarray, mass: float, radius: float):
